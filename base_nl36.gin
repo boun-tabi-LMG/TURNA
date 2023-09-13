@@ -1,0 +1,25 @@
+# T5.1.1 Efficient base nl36 model.
+
+import seqio
+include 't5x/examples/t5/t5_1_1/base.gin'  # imports vocab, optimizer and model.
+
+# ------------------- Network specification overrides --------------------------
+network.Transformer.config = @network.T5Config()
+network.T5Config:
+  emb_dim = 768
+  num_heads = 12
+  num_encoder_layers = 36
+  num_decoder_layers = 36
+  head_dim = 64
+  mlp_dim = 3072
+
+# ------------------- Model specification overrides --------------------------
+VOCABULARY = @seqio.SentencePieceVocabulary()
+# seqio.SentencePieceVocabulary.sentencepiece_model_file = "spiece.model"
+# seqio.SentencePieceVocabulary.sentencepiece_model_file = "turkish-spiece.model"
+seqio.SentencePieceVocabulary.sentencepiece_model_file = "SentencePiece_32k_Tokenizer-denoiser-tokens-added.model"
+
+MODEL = @models.EncoderDecoderModel()
+models.EncoderDecoderModel:
+  input_vocabulary = %VOCABULARY
+  output_vocabulary = %VOCABULARY
