@@ -33,13 +33,13 @@ def make_changes(m):
     # update the first three tokens to be the ID=0 for padding, ID=1 for EOS, and ID=2 for UNK
     for i, p in enumerate(m.pieces):
         if i == 0:
-            p.piece = "<PAD>"
+            p.piece = "<pad>"
         elif i == 1:
-            p.piece = "<EOS>"
+            p.piece = "</s>"
         elif i == 2:
-            p.piece = "<UNK>"
+            p.piece = "<unk>"
         elif i == 3:
-            p.piece = "<BOS>"
+            p.piece = "<s>"
         else:
             break
 
