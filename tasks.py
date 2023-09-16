@@ -23,7 +23,7 @@ S_DENOISER_TOKEN_PREFIX = "[S2S]"
 TaskRegistry = seqio.TaskRegistry
 
 vocabulary = seqio.SentencePieceVocabulary(
-    "SentencePiece_32k_Tokenizer-denoiser-tokens-added.model", extra_ids=0
+    "SentencePiece_32k_Tokenizer-denoiser-tokens-added-02.model", extra_ids=100
 )
 
 DEFAULT_OUTPUT_FEATURES = {
@@ -62,6 +62,7 @@ TaskRegistry.add(
         ),
         seqio.preprocessors.append_eos_after_trim,
     ],
-    output_features={"targets": DEFAULT_OUTPUT_FEATURES["targets"]},
+    # output_features={"targets": DEFAULT_OUTPUT_FEATURES["targets"]},
+    output_features=DEFAULT_OUTPUT_FEATURES,
     metric_fns=[metrics.accuracy],
 )
