@@ -25,6 +25,25 @@ def replace_tokens(m):
             break
 
 
+def make_changes(m):
+    """add denoiser tokens to the vocabulary and update the first three tokens to be
+    the ID=0 for padding, ID=1 for EOS, and ID=2 for UNK.
+    """
+    replace_tokens(m)
+    # update the first three tokens to be the ID=0 for padding, ID=1 for EOS, and ID=2 for UNK
+    for i, p in enumerate(m.pieces):
+        if i == 0:
+            p.piece = "<PAD>"
+        elif i == 1:
+            p.piece = "<EOS>"
+        elif i == 2:
+            p.piece = "<UNK>"
+        elif i == 3:
+            p.piece = "<BOS>"
+        else:
+            break
+
+
 def load_and_list_tokens_from_a_vocabulary(vocabulary_filepath):
     """this function uses X library"""
     m = model.ModelProto()
@@ -35,9 +54,9 @@ def load_and_list_tokens_from_a_vocabulary(vocabulary_filepath):
         yield idx, p.piece, p.score
 
 
-replace_tokens(m)
+make_changes(m)
 
-with open("SentencePiece_32k_Tokenizer-denoiser-tokens-added.model", "wb") as f:
+with open("SentencePiece_32k_Tokenizer-denoiser-tokens-added-02.model", "wb") as f:
     f.write(m.SerializeToString())
 
 for (
@@ -45,6 +64,6 @@ for (
     value,
     score,
 ) in load_and_list_tokens_from_a_vocabulary(
-    "SentencePiece_32k_Tokenizer-denoiser-tokens-added.model"
+    "SentencePiece_32k_Tokenizer-denoiser-tokens-added-02.model"
 ):
     print(f"Token: {i} -- {value} -- {score}")
