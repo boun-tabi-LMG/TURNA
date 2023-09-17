@@ -34,12 +34,16 @@ def make_changes(m):
     for i, p in enumerate(m.pieces):
         if i == 0:
             p.piece = "<PAD>"
+            p.type = 3
         elif i == 1:
             p.piece = "<EOS>"
+            p.type = 3
         elif i == 2:
             p.piece = "<UNK>"
+            p.type = 2
         elif i == 3:
             p.piece = "<BOS>"
+            p.type = 3
         else:
             break
 
