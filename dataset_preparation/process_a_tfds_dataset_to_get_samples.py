@@ -1,6 +1,6 @@
 """Process a TFDS dataset to get samples."""
 import functools
-impor gzip
+import gzip
 import json
 import logging
 import seqio
@@ -26,9 +26,7 @@ TaskRegistry = seqio.TaskRegistry
 
 
 def get_vocabulary(vocabulary_filepath):
-    vocabulary = seqio.SentencePieceVocabulary(
-        vocabulary_filepath, extra_ids=100
-    )
+    vocabulary = seqio.SentencePieceVocabulary(vocabulary_filepath, extra_ids=100)
     return vocabulary
 
 
@@ -39,8 +37,10 @@ def register_the_task(task_name, dataset_name, dataset_gcs_url):
         dataset_name (_type_): _description_
         dataset_gcs_url (_type_): _description_
     """
-    
-    vocabulary = get_vocabulary("SentencePiece_32k_Tokenizer-denoiser-tokens-added-02.model")
+
+    vocabulary = get_vocabulary(
+        "SentencePiece_32k_Tokenizer-denoiser-tokens-added-02.model"
+    )
 
     DEFAULT_OUTPUT_FEATURES = {
         "inputs": seqio.Feature(vocabulary=vocabulary, add_eos=True, required=False),
@@ -112,23 +112,25 @@ def write_samples_to_disk(
                 "targets": vocabulary.decode(ex["targets"]),
             }
             print(json.dumps(out_dict) + "\n", file=f)
-            
-            
+
+
 if __name__ == "__main__":
     import argparse
-    
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--task_name", type=str, required=True)
     parser.add_argument("--dataset_name", type=str, required=True)
     parser.add_argument("--dataset_gcs_url", type=str, required=True)
     parser.add_argument("--output_filepath", type=str, required=True)
-    
+
     register_the_task(args.task_name, args.dataset_name, args.dataset_gcs_url)
-    
+
     dataset = get_dataset(args.task_name)
-    
-    vocabulary = get_vocabulary("SentencePiece_32k_Tokenizer-denoiser-tokens-added-02.model")
-    
-    write_samples_to_disk(dataset=dataset, 
-                          vocabulary=vocabulary, 
-                          output_filepath=output_filepath)
+
+    vocabulary = get_vocabulary(
+        "SentencePiece_32k_Tokenizer-denoiser-tokens-added-02.model"
+    )
+
+    write_samples_to_disk(
+        dataset=dataset, vocabulary=vocabulary, output_filepath=output_filepath
+    )
