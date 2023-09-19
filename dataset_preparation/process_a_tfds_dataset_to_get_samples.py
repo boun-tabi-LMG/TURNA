@@ -113,7 +113,7 @@ def write_samples_to_disk(
     Args:
         dataset (_type_): _description_
     """
-    with gzip.open(output_filepath, "wb", encoding="utf8") as f:
+    with gzip.open(output_filepath, "wb") as f:
         for idx, ex in enumerate(tqdm(dataset.as_numpy_iterator())):
             out_dict = {
                 "inputs": vocabulary.decode(ex["inputs"]),
