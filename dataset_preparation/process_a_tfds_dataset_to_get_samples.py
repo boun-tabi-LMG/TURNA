@@ -4,7 +4,7 @@ import gzip
 import json
 import logging
 import seqio
-import tqdm
+from tqdm import tqdm
 
 from task_utils.ul2_objective import ul2_objective
 
@@ -26,6 +26,14 @@ TaskRegistry = seqio.TaskRegistry
 
 
 def get_vocabulary(vocabulary_filepath):
+    """_summary_
+
+    Args:
+        vocabulary_filepath (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     vocabulary = seqio.SentencePieceVocabulary(vocabulary_filepath, extra_ids=100)
     return vocabulary
 
@@ -83,12 +91,12 @@ def register_the_task(task_name, dataset_name, dataset_gcs_url):
     )
 
 
-def get_dataset(task_name):
+def get_dataset(task_name, split="validation"):
     """_summary_"""
     dataset = seqio.get_mixture_or_task(task_name).get_dataset(
         sequence_length={"inputs": 512, "targets": 512},
-        split="train",
-        shuffle=True,
+        split=split,
+        shuffle=False,
         num_epochs=1,
         shard_info=seqio.ShardInfo(index=0, num_shards=10),
         use_cached=False,
