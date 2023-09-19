@@ -2,7 +2,6 @@ import functools
 import seqio
 import tensorflow as tf
 import t5.data
-from datasets import load_dataset, load_from_disk
 from t5.data import postprocessors
 from t5.data import preprocessors
 from t5.evaluation import metrics
