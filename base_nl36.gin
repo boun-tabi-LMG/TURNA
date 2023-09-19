@@ -17,7 +17,8 @@ network.T5Config:
 VOCABULARY = @seqio.SentencePieceVocabulary()
 # seqio.SentencePieceVocabulary.sentencepiece_model_file = "spiece.model"
 # seqio.SentencePieceVocabulary.sentencepiece_model_file = "turkish-spiece.model"
-seqio.SentencePieceVocabulary.sentencepiece_model_file = "SentencePiece_32k_Tokenizer-denoiser-tokens-added.model"
+seqio.SentencePieceVocabulary.sentencepiece_model_file = "SentencePiece_32k_Tokenizer-denoiser-tokens-added-02.model"
+seqio.SentencePieceVocabulary.extra_ids = 100
 
 MODEL = @models.EncoderDecoderModel()
 models.EncoderDecoderModel:
