@@ -119,7 +119,7 @@ def write_samples_to_disk(
                 "inputs": vocabulary.decode(ex["inputs"]),
                 "targets": vocabulary.decode(ex["targets"]),
             }
-            print(json.dumps(out_dict).encode("utf8") + b"\n", file=f)
+            f.write(json.dumps(out_dict).encode("utf8") + b"\n")
 
 
 if __name__ == "__main__":
