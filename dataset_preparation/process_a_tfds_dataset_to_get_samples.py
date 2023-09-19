@@ -6,7 +6,7 @@ import logging
 import seqio
 import tqdm
 
-from ul2_objective import ul2_objective
+from task_utils.ul2_objective import ul2_objective
 
 from t5.evaluation import metrics
 
@@ -123,6 +123,8 @@ if __name__ == "__main__":
     parser.add_argument("--dataset_gcs_url", type=str, required=True)
     parser.add_argument("--output_filepath", type=str, required=True)
 
+    args = parser.parse_args()
+
     register_the_task(args.task_name, args.dataset_name, args.dataset_gcs_url)
 
     dataset = get_dataset(args.task_name)
@@ -132,5 +134,5 @@ if __name__ == "__main__":
     )
 
     write_samples_to_disk(
-        dataset=dataset, vocabulary=vocabulary, output_filepath=output_filepath
+        dataset=dataset, vocabulary=vocabulary, output_filepath=args.output_filepath
     )
