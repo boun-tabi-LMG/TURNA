@@ -1,0 +1,391 @@
+{
+    "xnli": [
+        "tr"
+    ],
+    "nli_tr": [
+        "snli_tr",
+        "multinli_tr"
+    ],
+    "wiki_lingua": [
+        "turkish"
+    ],
+    "GEM/wiki_lingua": [
+        "ar_tr",
+        "cs_tr",
+        "de_tr",
+        "en_tr",
+        "es_tr",
+        "fr_tr",
+        "hi_tr",
+        "id_tr",
+        "it_tr",
+        "ja_tr",
+        "ko_tr",
+        "nl_tr",
+        "pt_tr",
+        "ru_tr",
+        "th_tr",
+        "tr",
+        "tr_ar",
+        "tr_cs",
+        "tr_de",
+        "tr_en",
+        "tr_es",
+        "tr_fr",
+        "tr_hi",
+        "tr_id",
+        "tr_it",
+        "tr_ja",
+        "tr_ko",
+        "tr_nl",
+        "tr_pt",
+        "tr_ru",
+        "tr_th",
+        "tr_vi",
+        "tr_zh",
+        "vi_tr",
+        "zh_tr"
+    ],
+    "mlsum": [
+        "tu"
+    ],
+    "csebuetnlp/xlsum": [
+        "turkish"
+    ],
+    "xtreme": [
+        "PAN-X.tr",
+        "tatoeba.tur",
+        "udpos.Turkish",
+        "XQuAD.tr"
+    ],
+    "polyglot_ner": [
+        "tr"
+    ],
+    "turkish_ner": null,
+    "wikiann": [
+        "tr"
+    ],
+    "wmt17": [
+        "tr-en"
+    ],
+    "wmt16": [
+        "tr-en"
+    ],
+    "ccaligned_multilingual": [
+        "documents-zz_TR",
+        "sentences-zz_TR"
+    ],
+    "tapaco": [
+        "tr"
+    ],
+    "Helsinki-NLP/tatoeba_mt": [
+        "ara-tur",
+        "aze_Latn-tur",
+        "aze-tur",
+        "bul-tur",
+        "chv-tur",
+        "crh-tur",
+        "dan-tur",
+        "deu-tur",
+        "ell-tur",
+        "epo-tur",
+        "fra-tur",
+        "heb-tur",
+        "hun-tur",
+        "ina-tur",
+        "ita-tur",
+        "jpn_Hira-tur",
+        "jpn-tur",
+        "nld-tur",
+        "ota-tur",
+        "pol-tur",
+        "por-tur",
+        "ron-tur",
+        "spa-tur",
+        "swe-tur",
+        "tat-tur",
+        "tur-cmn_Hans",
+        "tur-cmn_Hant",
+        "tur-tur",
+        "tur-uig",
+        "tur-ukr",
+        "tur-uzb",
+        "tur-zho"
+    ],
+    "opus100": [
+        "en-tr"
+    ],
+    "opus_infopankki": [
+        "ar-tr",
+        "en-tr",
+        "es-tr",
+        "et-tr",
+        "fa-tr",
+        "fi-tr",
+        "fr-tr",
+        "ru-tr",
+        "so-tr",
+        "sv-tr",
+        "tr-zh"
+    ],
+    "ted_iwlst2013": [
+        "en-tr"
+    ],
+    "setimes": [
+        "bg-tr",
+        "bs-tr",
+        "el-tr",
+        "en-tr",
+        "hr-tr",
+        "mk-tr",
+        "ro-tr",
+        "sq-tr",
+        "sr-tr"
+    ],
+    "yhavinga/ccmatrix": [
+        "af-tr",
+        "ar-tr",
+        "az-tr",
+        "be-tr",
+        "bg-tr",
+        "bn-tr",
+        "cs-tr",
+        "da-tr",
+        "de-tr",
+        "el-tr",
+        "en-tr",
+        "es-tr",
+        "et-tr",
+        "eu-tr",
+        "fa-tr",
+        "fi-tr",
+        "fr-tr",
+        "gl-tr",
+        "he-tr",
+        "hi-tr",
+        "hu-tr",
+        "hy-tr",
+        "id-tr",
+        "it-tr",
+        "ja-tr",
+        "ka-tr",
+        "kk-tr",
+        "km-tr",
+        "ko-tr",
+        "la-tr",
+        "lt-tr",
+        "lv-tr",
+        "ml-tr",
+        "mr-tr",
+        "ms-tr",
+        "my-tr",
+        "ne-tr",
+        "nl-tr",
+        "no-tr",
+        "pl-tr",
+        "pt-tr",
+        "ro-tr",
+        "ru-tr",
+        "si-tr",
+        "sk-tr",
+        "sl-tr",
+        "sq-tr",
+        "sr-tr",
+        "sv-tr",
+        "sw-tr",
+        "ta-tr",
+        "tl-tr",
+        "tr-af",
+        "tr-ar",
+        "tr-az",
+        "tr-be",
+        "tr-bg",
+        "tr-bn",
+        "tr-cs",
+        "tr-da",
+        "tr-de",
+        "tr-el",
+        "tr-en",
+        "tr-es",
+        "tr-et",
+        "tr-eu",
+        "tr-fa",
+        "tr-fi",
+        "tr-fr",
+        "tr-gl",
+        "tr-he",
+        "tr-hi",
+        "tr-hu",
+        "tr-hy",
+        "tr-id",
+        "tr-it",
+        "tr-ja",
+        "tr-ka",
+        "tr-kk",
+        "tr-km",
+        "tr-ko",
+        "tr-la",
+        "tr-lt",
+        "tr-lv",
+        "tr-ml",
+        "tr-mr",
+        "tr-ms",
+        "tr-my",
+        "tr-ne",
+        "tr-nl",
+        "tr-no",
+        "tr-pl",
+        "tr-pt",
+        "tr-ro",
+        "tr-ru",
+        "tr-si",
+        "tr-sk",
+        "tr-sl",
+        "tr-sq",
+        "tr-sr",
+        "tr-sv",
+        "tr-sw",
+        "tr-ta",
+        "tr-tl",
+        "tr-uk",
+        "tr-ur",
+        "tr-uz",
+        "tr-vi",
+        "tr-zh",
+        "uk-tr",
+        "ur-tr",
+        "uz-tr",
+        "vi-tr",
+        "zh-tr"
+    ],
+    "tanzil": [
+        "en-tr"
+    ],
+    "bianet": [
+        "en_to_tr",
+        "ku_to_tr"
+    ],
+    "qanastek/MASSIVE": [
+        "tr-TR"
+    ],
+    "ttc4900": null,
+    "Toygar/turkish-offensive-language-detection": null,
+    "offenseval2020_tr": null,
+    "clips/mfaq": [
+        "tr",
+        "tr_flat"
+    ],
+    "exams": [
+        "crosslingual_tr",
+        "crosslingual_with_para_tr"
+    ],
+    "xcopa": [
+        "translation-tr"
+    ],
+    "m_lama": null,
+    "mkqa": null,
+    "xquad": [
+        "xquad.tr"
+    ],
+    "xquad_r": [
+        "tr"
+    ],
+    "juletxara/xquad_xtreme": [
+        "tr"
+    ],
+    "adithya7/xlel_wd_dictionary": [
+        "wikidata.tr"
+    ],
+    "universal_dependencies": [
+        "tr_boun",
+        "tr_gb",
+        "tr_imst",
+        "tr_pud"
+    ],
+    "universal_morphologies": [
+        "tur"
+    ],
+    "bible_para": [
+        {
+            "lang1": "en",
+            "lang2": "tr"
+        }
+    ],
+    "ted_talks_iwslt": [
+        {
+            "lang1": "tr",
+            "lang2": "en",
+            "year": "2014"
+        },
+        {
+            "lang1": "tr",
+            "lang2": "en",
+            "year": "2015"
+        },
+        {
+            "lang1": "tr",
+            "lang2": "en",
+            "year": "2016"
+        }
+    ],
+    "tatoeba": [
+        {
+            "lang1": "en",
+            "lang2": "tr"
+        }
+    ],
+    "kde4": [
+        {
+            "lang1": "en",
+            "lang2": "tr"
+        }
+    ],
+    "opus_gnome": [
+        {
+            "lang1": "en",
+            "lang2": "tr"
+        }
+    ],
+    "opus_ubuntu": [
+        {
+            "lang1": "en",
+            "lang2": "tr"
+        }
+    ],
+    "open_subtitles": [
+        {
+            "lang1": "en",
+            "lang2": "tr"
+        }
+    ],
+    "qed_amara": [
+        {
+            "lang1": "en",
+            "lang2": "tr"
+        }
+    ],
+    "opus_wikipedia": [
+        {
+            "lang1": "en",
+            "lang2": "tr"
+        }
+    ],
+    "php": [
+        {
+            "lang1": "en",
+            "lang2": "tr"
+        }
+    ],
+    "tilde_model": [
+        {
+            "lang1": "en",
+            "lang2": "tr"
+        }
+    ],
+    "europa_eac_tm": [
+        {
+            "lang1": "en",
+            "lang2": "tr"
+        }
+    ]
+}
