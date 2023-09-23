@@ -12,10 +12,7 @@ REPO_DIR=${TRAINING_PREPARATION_DIR}/..
 
 echo ${SCRIPT_DIR} $REPO_DIR $TRAINING_PREPARATION_DIR
 
-cd ${REPO_DIR} && \
-git archive main -o tmp-turkish-llm.tar.gz && \
-gcloud compute tpus tpu-vm scp tmp-turkish-llm.tar.gz ${TPU_VM_NAME}: && \
-cd - 
+bash ./tpu_vm_cp_code.sh ${REPO_DIR} ${TPU_VM_NAME} ${TRAINING_PREPARATION_DIR}
 
 gcloud compute tpus tpu-vm scp ${TRAINING_PREPARATION_DIR}/tpu_vm_setup.sh ${TPU_VM_NAME}: && \
 gcloud compute tpus tpu-vm ssh ${TPU_VM_NAME} -- "bash ./tpu_vm_setup.sh"

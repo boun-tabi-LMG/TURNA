@@ -17,7 +17,4 @@ cd ~/t5x && \
 python3 -m pip install -e '.[gpu,tpu]' -f https://storage.googleapis.com/jax-releases/libtpu_releases.html && \
 cd -
 
-mkdir -p ~/turkish-llm && \
-cd ~/turkish-llm && \
-tar zxvf ~/tmp-turkish-llm.tar.gz && \
-cd -
+bash ./tpu_vm_setup_extract_the_code_archive.sh
