@@ -1,9 +1,9 @@
 #!/bin/bash
 
-model_conf_prefixes=large large_nl36 base_nl36
+model_conf_prefixes='large large_nl36 base_nl36'
 
-batch_sizes=64 128 256
-input_lengths=512 1024 2048
+batch_sizes='64 128 256'
+input_lengths='512 1024 2048'
 
 date_identifier=$(date +%Y%m%d_%H%M%S)
 
