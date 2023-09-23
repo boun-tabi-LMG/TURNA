@@ -15,7 +15,7 @@ for model_conf_prefix in ${model_conf_prefixes}; do
                 ${model_conf_prefix}-bs_${batch_size}-il_${input_length}-${date_identifier} \
                 --gin.BATCH_SIZE=\"${batch_size}\" \
                 --gin.TASK_FEATURE_LENGTHS=\"\{\"inputs\": ${input_length}, \"targets\": ${input_length}\}\" \
-                >> train-${model_conf_prefix}-bs_${batch_size}-il_${input_length}-${date_identifier}.log
+                >> train-${model_conf_prefix}-bs_${batch_size}-il_${input_length}-${date_identifier}.log 2>&1
         done
     done
 done
