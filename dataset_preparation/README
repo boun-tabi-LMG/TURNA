@@ -44,6 +44,13 @@ Navigate to the bilkent_creative_writings directory and build the dataset:
 cd bilkent_creative_writings
 tfds build  --manual_dir ../../data/raw/bilkent-creative-writings/texts_clean/ --data_dir ../../data/tfds/bilkent_creative_writings
 ```
+## TBMM
+
+### Preprocessing the dataset
+Once the dataset is downloaded, place the dataset in your desired directory (e.g., data/raw/TBMM/). Then, preprocess it with:
+```bash
+python preprocess/preprocess_tbmm.py --input_dir ../data/raw/TBMM/TXTs --output_dir ../data/raw/TBMM/TXTs-clean 
+```
 
 ## Samples
 
