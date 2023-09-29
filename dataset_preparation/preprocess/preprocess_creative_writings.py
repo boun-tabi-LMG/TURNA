@@ -90,4 +90,4 @@ if __name__ == "__main__":
     main()
 
 
-# python preprocess_creative_writings.py --input_dir texts --output_dir texts_clean --train_ratio 0.99
+# python preprocess_creative_writings.py --input_dir texts --output_dir texts_clean --train_ratio 0.98

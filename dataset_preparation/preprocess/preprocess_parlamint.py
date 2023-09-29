@@ -2,8 +2,7 @@ import argparse
 import random
 from pathlib import Path
 
-def split_train_val(year_path, ratio=0.8):
-    documents = list(year_path.glob('*.txt'))
+def split_train_val(documents, ratio=0.8):
     random.shuffle(documents)
 
     split_idx = int(len(documents) * ratio)
@@ -25,21 +24,21 @@ def process_documents(input_path, output_path, train_ratio):
     # Clear out existing data in train and val files
     open(train_file, 'w').close()
     open(val_file, 'w').close()
+    
+    documents = [doc for year in input_path.iterdir() for doc in year.iterdir()]  
+    train_docs, val_docs = split_train_val(documents, train_ratio)
 
-    for year in input_path.iterdir():
-        train_docs, val_docs = split_train_val(year, train_ratio)
+    write_to_file(train_file, [doc.name for doc in train_docs])
+    write_to_file(val_file, [doc.name for doc in val_docs])
 
-        write_to_file(train_file, [doc.name for doc in train_docs])
-        write_to_file(val_file, [doc.name for doc in val_docs])
+    for document in train_docs + val_docs:
+        with open(document, 'r') as doc_file:
+            lines = doc_file.readlines()
 
-        for document in train_docs + val_docs:
-            with open(document, 'r') as doc_file:
-                lines = doc_file.readlines()
-
-            lines_only_text = [line.split('\t')[1] for line in lines if '\t' in line]
-            text = '\n'.join(lines_only_text)
-            with open(output_path / document.name, 'w') as out_file:
-                out_file.write(text)
+        lines_only_text = [line.split('\t')[1] for line in lines if '\t' in line]
+        text = '\n'.join(lines_only_text)
+        with open(output_path / document.name, 'w') as out_file:
+            out_file.write(text)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Clean texts and split into train and validation.")
@@ -53,4 +52,5 @@ if __name__ == "__main__":
     process_documents(input_path, output_path, args.train_ratio)
 
 
-# python preprocess_parlamint.py --input_dir ParlaMint-TR.txt --output_dir ParlaMint-TR --train_ratio 0.99
+# python preprocess_parlamint.py --input_dir ParlaMint-TR.txt --output_dir ParlaMint-TR --train_ratio 0.998
+
