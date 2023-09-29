@@ -1,6 +1,7 @@
 import argparse
 import tensorflow_datasets as tfds
 from transformers import PreTrainedTokenizerFast
+from zemberek import TurkishSentenceExtractor
 
 def count_tokens_with_pretrained_tokenizer(dataset_name, tokenizer_name, split='train'):
     """
@@ -17,15 +18,18 @@ def count_tokens_with_pretrained_tokenizer(dataset_name, tokenizer_name, split='
     
     # Load the dataset
     dataset = tfds.load(name=dataset_name, split=split)
-    
+    extractor = TurkishSentenceExtractor()
+
     tokenizer = PreTrainedTokenizerFast.from_pretrained(tokenizer_name)
 
     total_tokens = 0
     
     for text in dataset:
         # Convert tensor to string and tokenize
-        tokens = tokenizer.tokenize(text["text"].numpy().decode('utf-8'))
-        total_tokens += len(tokens)
+        sentences = extractor.from_paragraph(text["text"].numpy().decode('utf-8'))
+        for sentence in sentences: 
+            tokens = tokenizer.tokenize(sentence)
+            total_tokens += len(tokens)
     
     return total_tokens
 
