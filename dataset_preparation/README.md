@@ -45,12 +45,6 @@ cd bilkent_creative_writings
 tfds build  --manual_dir ../../data/raw/bilkent-creative-writings/texts_clean/ --data_dir ../../data/tfds/bilkent_creative_writings
 ```
 
-### Counts tokens in a TFDS dataset
-Run `count_tokens.py` specifying dataset name, tokenizer name or path, and split name (e.g. train or validation)
-```bash
-python count_tokens.py --dataset_name bilkent_creative_writings --tokenizer_name /media/disk/datasets/bounllm/VBARTTokenizer/ --split validation
-```
-
 ## Samples
 
 python -m dataset_preparation.process_a_tfds_dataset_to_get_samples --task_name deneme --dataset_name oscarmc4_cleaned_hf_dataset_subset_combined_tfds:1.0.0 --dataset_gcs_url gs://turkish-llm-data/ --output_filepath /media/disk/datasets/bounllm/sonrasil_oscarmc4_cleaned_hf_dataset_subset_combined_tfds.tar.gz
