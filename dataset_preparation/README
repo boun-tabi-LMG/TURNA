@@ -16,7 +16,7 @@ tar -xvzf ParlaMint-TR.tgz
 ### Preprocessing the dataset
 Once the dataset is downloaded, place the dataset in your desired directory (e.g., data/raw/ParlaMint-TR/). Then, preprocess it with:
 ```bash
-python preprocess/preprocess_parlamint.py --input_dir ../data/raw/ParlaMint-TR/ParlaMint-TR.txt --output_dir ../data/raw/ParlaMint-TR/ParlaMint-TR-clean --train_ratio 0.99
+python preprocess/preprocess_parlamint.py --input_dir ../data/raw/ParlaMint-TR/ParlaMint-TR.txt --output_dir ../data/raw/ParlaMint-TR/ParlaMint-TR-clean --train_ratio 0.998
 ```
 
 ### Create a TFDS dataset
@@ -35,7 +35,7 @@ Scripts to scrape the PDF files and convert them to text format are available on
 Once you obtain the text files, place them in your directory of choice (e.g., data/raw/bilkent-creative-writings/texts/). Then, preprocess them using:
 
 ```bash
-python preprocess/preprocess_creative_writings.py --input_dir ../data/raw/bilkent-creative-writings/texts --output_dir ../data/raw/bilkent-creative-writings/texts_clean --train_ratio 0.99
+python preprocess/preprocess_creative_writings.py --input_dir ../data/raw/bilkent-creative-writings/texts --output_dir ../data/raw/bilkent-creative-writings/texts_clean --train_ratio 0.98
 ```
 
 ### Create a TFDS dataset
