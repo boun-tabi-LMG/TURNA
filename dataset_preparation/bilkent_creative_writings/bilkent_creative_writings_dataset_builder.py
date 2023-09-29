@@ -2,7 +2,7 @@ import tensorflow_datasets as tfds
 from pathlib import Path
 import numpy as np
 
-class BilkentCreativeWritingsBuilder(tfds.core.GeneratorBasedBuilder):
+class Builder(tfds.core.GeneratorBasedBuilder):
     """DatasetBuilder for Bilkent Creative Writings dataset."""
     VERSION = tfds.core.Version('1.0.0')
     RELEASE_NOTES = {'1.0.0': 'Initial release.'}
