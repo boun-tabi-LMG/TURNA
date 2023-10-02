@@ -41,6 +41,7 @@ class Builder(tfds.core.GeneratorBasedBuilder):
         # TODO(oscarmc4_cleaned_hf_dataset_tfds): Downloads the data
         # and defines the splits
         main_filepath = Path(dl_manager.manual_dir) / "dataset.arrow"
+        main_filepath = str(main_filepath)
         num_examples = 50336214
 
         random.seed(42)
