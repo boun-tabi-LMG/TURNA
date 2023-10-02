@@ -1,10 +1,10 @@
 """oscarmc4_cleaned_hf_dataset_tfds dataset."""
 
-import tensorflow_datasets as tfds
-import gzip
-import numpy as np
-import json
 from pathlib import Path
+import random
+import pyarrow as pa
+import tensorflow_datasets as tfds
+import numpy as np
 
 
 class Builder(tfds.core.GeneratorBasedBuilder):
@@ -14,9 +14,7 @@ class Builder(tfds.core.GeneratorBasedBuilder):
     RELEASE_NOTES = {
         "1.0.0": "Initial release.",
     }
-    MANUAL_DOWNLOAD_INSTRUCTIONS = (
-        "Put train.txt.gz and validation.txt.gz in the manual_dir"
-    )
+    MANUAL_DOWNLOAD_INSTRUCTIONS = "Put dataset.arrow in the manual_dir"
 
     def _info(self) -> tfds.core.DatasetInfo:
         """Returns the dataset metadata."""
@@ -42,29 +40,61 @@ class Builder(tfds.core.GeneratorBasedBuilder):
         """Returns SplitGenerators."""
         # TODO(oscarmc4_cleaned_hf_dataset_tfds): Downloads the data
         # and defines the splits
-        train_filepath = Path(dl_manager.manual_dir) / "train.txt.gz"
-        validation_filepath = Path(dl_manager.manual_dir) / "validation.txt.gz"
+        main_filepath = Path(dl_manager.manual_dir) / "dataset.arrow"
+        num_examples = 50336214
+
+        random.seed(42)
+        selected_indices = list(range(num_examples))
+        random.shuffle(selected_indices)
+        n_validation = int(num_examples * 0.00001)
+
+        train_indices_set = set(selected_indices[n_validation:])
+        validation_indices_set = set(selected_indices[:n_validation])
 
         # TODO(oscarmc4_cleaned_hf_dataset_tfds): Returns the
         # Dict[split names, Iterator[Key, Example]]
         return {
-            "train": self._generate_examples(train_filepath),
-            "validation": self._generate_examples(validation_filepath),
+            "train": self._generate_examples(main_filepath, "train", train_indices_set),
+            "validation": self._generate_examples(
+                main_filepath, "validation", validation_indices_set
+            ),
         }
 
-    def _generate_examples(self, filepath):
+    def _generate_examples(self, main_filepath, split_name, selected_indices_set):
         """Yields examples."""
         # TODO(oscarmc4_cleaned_hf_dataset_tfds): Yields (key, example)
         # tuples from the dataset
-        with gzip.open(filepath, "rb") as f:
-            line = f.readline()
+
+        with pa.memory_map(main_filepath) as mms:
+            open_s = pa.ipc.open_stream(mms)
             idx = 0
-            while line:
-                item = json.loads(line)
-                yield idx, {
-                    "id": item["id"],
-                    "text": item["text"],
-                    "corpus": item["corpus"],
-                }
-                idx += 1
-                line = f.readline()
+            try:
+                b = open_s.read_next_batch()
+                while b:
+                    n_rows = b.num_rows
+                    batch_ids_set = set(range(idx, idx + n_rows))
+                    ids_to_extract = batch_ids_set.intersection(selected_indices_set)
+                    b_dict = b.to_pydict()
+                    for target_id in ids_to_extract:
+                        yield target_id, {
+                            "id": b_dict["id"][target_id - idx],
+                            "text": b_dict["text"][target_id - idx],
+                            "corpus": b_dict["corpus"][target_id - idx],
+                        }
+                    idx += n_rows
+                    b = open_s.read_next_batch()
+            except StopIteration:
+                pass
+
+        # with gzip.open(filepath, "rb") as f:
+        #     line = f.readline()
+        #     idx = 0
+        #     while line:
+        #         item = json.loads(line)
+        #         yield idx, {
+        #             "id": item["id"],
+        #             "text": item["text"],
+        #             "corpus": item["corpus"],
+        #         }
+        #         idx += 1
+        #         line = f.readline()
