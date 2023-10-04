@@ -1,0 +1,3 @@
+content.data-type.text # Contains text data.
+content.language.tr # Contains text in language Turkish / tr.
+content.monolingual # Contains text in 1 natural language.
