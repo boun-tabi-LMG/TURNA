@@ -11,12 +11,10 @@ class Builder(tfds.core.GeneratorBasedBuilder):
   """DatasetBuilder for yoktez dataset."""
 
   VERSION = tfds.core.Version('1.0.0')
-  RELEASE_NOTES = {
-      '1.0.0': 'Initial release.',
-  }
-  MANUAL_DOWNLOAD_INSTRUCTIONS = (
-      "Put yoktez articles ('_no_inline_citations.txt') in the manual_dir / 'no_inline_txt' "
-  )
+  RELEASE_NOTES = {'1.0.0': 'Initial release.'}
+  MANUAL_DOWNLOAD_INSTRUCTIONS = "Put writings inside manual_dir/no_inline_txt and train.txt, val.txt and drop.txt in the manual_dir"
+  CORPUS_NAME = "yoktez"
+  FILE_LIST_PARENT = True
 
   def _info(self) -> tfds.core.DatasetInfo:
     """Returns the dataset metadata."""
@@ -64,7 +62,7 @@ class Builder(tfds.core.GeneratorBasedBuilder):
         yield idx, {
             "id": idx,
             "text": line,
-            "corpus": "yoktez",
+            "corpus": self.CORPUS_NAME,
             "article": file,
         }
 
