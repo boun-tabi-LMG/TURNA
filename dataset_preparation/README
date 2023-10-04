@@ -1,5 +1,30 @@
 # Dataset preparation
 
+## Oscar MC4 corpus
+
+### Downloading the dataset
+
+The version in HF format is in `gs://turkish-llm-data/oscarmc4_cleaned_hf_dataset/`.
+
+### Create the TFDS version
+
+The name is not ideal. We should remove the `_hf_dataset` part later.
+
+```bash
+cd ${TURKISH_LLM_REPO_DIR}/dataset_preparation/oscarmc4_cleaned_hf_dataset
+tfds build \
+    --manual_dir /media/disk/datasets/bounllm/oscarmc4_cleaned_hf_dataset \
+    --data_dir /media/disk/datasets/bounllm/tfds/datasets/
+```
+
+### Copy the TFDS version to GCS
+
+```bash
+gcloud storage cp -r \
+    /media/disk/datasets/bounllm/tfds/datasets/oscarmc4_cleaned_hf_dataset \
+    gs://turkish-llm-data/tfds/datasets/oscarmc4_cleaned_hf_dataset
+```
+
 ## ParlaMintTR
 
 ### Downloading the dataset
