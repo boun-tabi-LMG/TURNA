@@ -1,16 +1,20 @@
+"""book_corpus_v2 dataset."""
+
 import tensorflow_datasets as tfds
 from pathlib import Path
 import numpy as np
 
-class Builder(tfds.core.GeneratorBasedBuilder):
-    """DatasetBuilder for Bilkent Creative Writings dataset."""
-    VERSION = tfds.core.Version('1.0.0')
-    RELEASE_NOTES = {'1.0.0': 'Initial release.'}
-    MANUAL_DOWNLOAD_INSTRUCTIONS = "Put writings in the manual_dir and train.txt and val.txt in the parent directory"
-    CORPUS_NAME = "bilkent-creative-writings"
-    FILE_LIST_PARENT = True
 
-    def _info(self) -> tfds.core.DatasetInfo:
+class Builder(tfds.core.GeneratorBasedBuilder):
+  """DatasetBuilder for book_corpus_v2 dataset."""
+
+  VERSION = tfds.core.Version('1.0.0')
+  RELEASE_NOTES = {'1.0.0': 'Initial release.'}
+  MANUAL_DOWNLOAD_INSTRUCTIONS = "Put writings in the manual_dir and train.txt and val.txt in the parent directory"
+  CORPUS_NAME = "book-corpus-v2"
+  FILE_LIST_PARENT = True
+
+  def _info(self) -> tfds.core.DatasetInfo:
         """Returns the dataset metadata."""
         return self.dataset_info_from_configs(
                 features=tfds.features.FeaturesDict(
@@ -25,7 +29,7 @@ class Builder(tfds.core.GeneratorBasedBuilder):
                 homepage="https://dataset-homepage/",
             )
 
-    def _split_generators(self, dl_manager: tfds.download.DownloadManager):
+  def _split_generators(self, dl_manager: tfds.download.DownloadManager):
         """Returns SplitGenerators."""
         filepath = Path(dl_manager.manual_dir)
         return {
@@ -33,7 +37,7 @@ class Builder(tfds.core.GeneratorBasedBuilder):
             "validation": self._generate_examples(filepath, "val"),
         }
 
-    def _generate_examples(self, path, split):
+  def _generate_examples(self, path, split):
         """Yields examples."""
         file_list_path = path.parent if self.FILE_LIST_PARENT else path
         file_list_path = file_list_path / f"{split}.txt"
@@ -51,4 +55,4 @@ class Builder(tfds.core.GeneratorBasedBuilder):
                 "article": file,
             }
 
-# tfds build  --manual_dir /media/disk/datasets/bounllm/bilkent-creative-writings/texts_clean/ --data_dir /media/disk/datasets/bounllm/tfds/datasets/bilkent_creative_writings
+# tfds build  --manual_dir /media/disk/datasets/bounllm/book_corpus_v2/texts_clean --data_dir /media/disk/datasets/bounllm/tfds/datasets/book_corpus_v2
