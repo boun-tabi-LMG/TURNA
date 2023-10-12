@@ -1,4 +1,5 @@
 import functools
+import logging
 
 import seqio
 import t5.data
@@ -8,6 +9,9 @@ from t5.evaluation import metrics
 
 from task_utils.ul2_objective import ul2_objective
 from task_utils.tokens import get_dataset, count_tokens
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # values from UL2 paper https://arxiv.org/pdf/2205.05131.pdf chapter 3.1.2 table 1
 R_DENOISER_SPAN_LENGTHS = [3.0, 8.0]
@@ -106,5 +110,11 @@ MixtureRegistry.add(
 )
 
 # n_tokens = count_tokens("count_bilkent_creative_writings")
-n_tokens = count_tokens("count_parlamint_tr")
-print(n_tokens)
+# n_tokens = count_tokens("count_parlamint_tr")
+# print(n_tokens)
+
+n_tokens = {}
+for task_name in [f"count_{dataset_name}" for dataset_name, _ in dataset_names]:
+    n_tokens[task_name] = count_tokens(task_name)
+    logger.info(f"task_name: {task_name}, n_tokens: {n_tokens[task_name]}")
+logger.info(f"n_tokens: {n_tokens}")
