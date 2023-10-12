@@ -29,7 +29,7 @@ def get_dataset(task_name, split="validation", counting=False):
 def count_tokens(task_name):
     """_summary_"""
     total_tokens = 0
-    for split_name in ["training", "validation"]:
+    for split_name in ["train", "validation"]:
         dataset = get_dataset(task_name, split=split_name, counting=True)
         for idx, ex in enumerate(dataset.as_numpy_iterator()):
             total_tokens += len(ex["text"])
