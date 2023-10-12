@@ -8,10 +8,14 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def get_dataset(task_name, split="validation"):
+def get_dataset(task_name, split="validation", counting=False):
     """_summary_"""
+    if counting:
+        sequence_length = None
+    else:
+        sequence_length = {"inputs": 512, "targets": 512}
     dataset = seqio.get_mixture_or_task(task_name).get_dataset(
-        sequence_length={"inputs": 512, "targets": 512},
+        sequence_length=sequence_length,
         split=split,
         shuffle=False,
         num_epochs=1,
@@ -26,7 +30,7 @@ def count_tokens(task_name):
     """_summary_"""
     total_tokens = 0
     for split_name in ["training", "validation"]:
-        dataset = get_dataset(task_name, split=split_name)
+        dataset = get_dataset(task_name, split=split_name, counting=True)
         for idx, ex in enumerate(dataset.as_numpy_iterator()):
             total_tokens += len(ex["text"])
             if idx % 10000 == 0:
