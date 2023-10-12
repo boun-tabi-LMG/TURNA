@@ -68,7 +68,7 @@ preprocessing_pipeline = [
     seqio.preprocessors.append_eos_after_trim,
 ]
 
-for dataset_name, version in zip(dataset_names, dataset_versions):
+for (dataset_name, rate), version in zip(dataset_names, dataset_versions):
     TaskRegistry.add(
         f"pretrain_{dataset_name}",
         source=seqio.TfdsDataSource(
