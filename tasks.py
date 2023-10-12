@@ -105,5 +105,6 @@ MixtureRegistry.add(
     default_rate=1.0,
 )
 
-n_tokens = count_tokens("count_bilkent_creative_writings")
+# n_tokens = count_tokens("count_bilkent_creative_writings")
+n_tokens = count_tokens("count_parlamint_tr")
 print(n_tokens)
