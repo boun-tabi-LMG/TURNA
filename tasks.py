@@ -72,7 +72,7 @@ for dataset_name, version in zip(dataset_names, dataset_versions):
     TaskRegistry.add(
         f"pretrain_{dataset_name}",
         source=seqio.TfdsDataSource(
-            tfds_name=dataset_name, tfds_data_dir=dataset_gcs_url
+            tfds_name=":".join([dataset_name, version]), tfds_data_dir=dataset_gcs_url
         ),
         preprocessors=preprocessing_pipeline,
         output_features=DEFAULT_OUTPUT_FEATURES,
