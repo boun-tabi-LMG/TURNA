@@ -98,7 +98,6 @@ def get_dataset(task_name, split="validation"):
         split=split,
         shuffle=False,
         num_epochs=1,
-        shard_info=seqio.ShardInfo(index=0, num_shards=10),
         use_cached=False,
         seed=42,
     )
