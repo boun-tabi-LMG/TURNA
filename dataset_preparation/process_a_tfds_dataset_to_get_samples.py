@@ -128,8 +128,8 @@ def write_samples_to_disk(
             }
             if add_encoded_values:
                 out_dict = {
-                    "inputs_encoded": list(ex["inputs"]),
-                    "targets_encoded": list(ex["targets"]),
+                    "inputs_encoded": [int(x) for x in ex["inputs"]],
+                    "targets_encoded": [int(x) for x in ex["targets"]],
                 }
             f.write(json.dumps(out_dict).encode("utf8") + b"\n")
 
