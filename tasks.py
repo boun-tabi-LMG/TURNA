@@ -108,19 +108,3 @@ MixtureRegistry.add(
     [(f"pretrain_{dataset_name}", rate) for dataset_name, rate in dataset_names],
     default_rate=1.0,
 )
-
-# n_tokens = count_tokens("count_bilkent_creative_writings")
-# n_tokens = count_tokens("count_parlamint_tr")
-# print(n_tokens)
-
-dataset_names = [
-    ("oscarmc4_cleaned_hf_dataset", 1.0),
-    ("parlamint_tr", 12.0),
-    ("yoktez", 2.0),
-]
-
-n_tokens = {}
-for task_name in [f"count_{dataset_name}" for dataset_name, _ in dataset_names]:
-    n_tokens[task_name] = count_tokens(task_name)
-    logger.info(f"task_name: {task_name}, n_tokens: {n_tokens[task_name]}")
-logger.info(f"n_tokens: {n_tokens}")

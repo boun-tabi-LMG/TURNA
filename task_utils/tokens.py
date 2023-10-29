@@ -35,6 +35,17 @@ def count_tokens(task_name):
             total_tokens += len(ex["text"])
             if idx % 10000 == 0:
                 logger.info(
-                    f"count_tokens: task_name: {task_name}, split_name: {split_name}, idx: {idx}, total_tokens: {total_tokens}"
+                    f"count_tokens: task_name: {task_name}, "
+                    f"split_name: {split_name}, idx: {idx}, "
+                    f"total_tokens: {total_tokens}"
                 )
     return total_tokens
+
+
+def count_tokens_with_seqio():
+    """_summary_"""
+    n_tokens = {}
+    for task_name in [f"count_{dataset_name}" for dataset_name, _ in dataset_names]:
+        n_tokens[task_name] = count_tokens(task_name)
+        logger.info(f"task_name: {task_name}, n_tokens: {n_tokens[task_name]}")
+    logger.info(f"n_tokens: {n_tokens}")
