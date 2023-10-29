@@ -142,8 +142,12 @@ if __name__ == "__main__":
     parser.add_argument("--dataset_name", type=str, required=True)
     parser.add_argument("--dataset_gcs_url", type=str, required=True)
     parser.add_argument("--output_filepath", type=str, required=True)
-    parser.add_argument("--only_a_single_shard", type=bool, default=False)
-    parser.add_argument("--add_encoded_values", type=bool, default=False)
+    parser.add_argument(
+        "--only_a_single_shard", type=bool, default=False, action="store_true"
+    )
+    parser.add_argument(
+        "--add_encoded_values", type=bool, default=False, action="store_true"
+    )
 
     args = parser.parse_args()
 
