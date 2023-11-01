@@ -91,13 +91,18 @@ def register_the_task(task_name, dataset_name, dataset_gcs_url):
     )
 
 
-def get_dataset(task_name, split="validation"):
+def get_dataset(task_name, split="validation", only_a_single_shard=False):
     """_summary_"""
+    if only_a_single_shard:
+        shard_info = seqio.ShardInfo(index=0, num_shards=10)
+    else:
+        shard_info = None
     dataset = seqio.get_mixture_or_task(task_name).get_dataset(
         sequence_length={"inputs": 512, "targets": 512},
         split=split,
         shuffle=False,
         num_epochs=1,
+        shard_info=shard_info,
         use_cached=False,
         seed=42,
     )
@@ -105,7 +110,10 @@ def get_dataset(task_name, split="validation"):
 
 
 def write_samples_to_disk(
-    dataset, vocabulary: seqio.SentencePieceVocabulary, output_filepath: str
+    dataset,
+    vocabulary: seqio.SentencePieceVocabulary,
+    output_filepath: str,
+    add_encoded_values: bool = False,
 ):
     """_summary_
 
@@ -118,6 +126,9 @@ def write_samples_to_disk(
                 "inputs": vocabulary.decode(ex["inputs"]),
                 "targets": vocabulary.decode(ex["targets"]),
             }
+            if add_encoded_values:
+                out_dict["inputs_encoded"] = [int(x) for x in ex["inputs"]]
+                out_dict["targets_encoded"] = [int(x) for x in ex["targets"]]
             f.write(json.dumps(out_dict).encode("utf8") + b"\n")
 
 
@@ -129,17 +140,22 @@ if __name__ == "__main__":
     parser.add_argument("--dataset_name", type=str, required=True)
     parser.add_argument("--dataset_gcs_url", type=str, required=True)
     parser.add_argument("--output_filepath", type=str, required=True)
+    parser.add_argument("--only_a_single_shard", default=False, action="store_true")
+    parser.add_argument("--add_encoded_values", default=False, action="store_true")
 
     args = parser.parse_args()
 
     register_the_task(args.task_name, args.dataset_name, args.dataset_gcs_url)
 
-    dataset = get_dataset(args.task_name)
+    dataset = get_dataset(args.task_name, only_a_single_shard=args.only_a_single_shard)
 
     vocabulary = get_vocabulary(
         "SentencePiece_32k_Tokenizer-denoiser-tokens-added-02.model"
     )
 
     write_samples_to_disk(
-        dataset=dataset, vocabulary=vocabulary, output_filepath=args.output_filepath
+        dataset=dataset,
+        vocabulary=vocabulary,
+        output_filepath=args.output_filepath,
+        add_encoded_values=args.add_encoded_values,
     )
