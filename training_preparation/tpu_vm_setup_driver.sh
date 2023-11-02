@@ -2,7 +2,12 @@
 
 # gcloud beta services identity create --service tpu.googleapis.com --project derlem
 
-TPU_VM_NAME="tpu-vm-04"
+# gcloud compute tpus tpu-vm create tpu-vm-05 \
+#   --zone=europe-west4-a \
+#   --accelerator-type=v4-8 \
+#   --version=tpu-vm-tf-2.13.0
+
+TPU_VM_NAME=${1:-tpu-vm-05}
 
 SCRIPT_DIR=$(dirname "$0")
 
