@@ -17,7 +17,7 @@ REPO_DIR=${TRAINING_PREPARATION_DIR}/..
 
 echo ${SCRIPT_DIR} $REPO_DIR $TRAINING_PREPARATION_DIR
 
-bash ./tpu_vm_cp_code.sh ${REPO_DIR} ${TPU_VM_NAME} ${TRAINING_PREPARATION_DIR}
+bash ${TRAINING_PREPARATION_DIR}/tpu_vm_cp_code.sh ${REPO_DIR} ${TPU_VM_NAME} ${TRAINING_PREPARATION_DIR}
 
 gcloud compute tpus tpu-vm scp ${TRAINING_PREPARATION_DIR}/tpu_vm_setup.sh ${TPU_VM_NAME}: && \
 gcloud compute tpus tpu-vm ssh ${TPU_VM_NAME} -- "bash ./tpu_vm_setup.sh"
