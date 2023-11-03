@@ -34,11 +34,11 @@ dataset_gcs_url = "gs://turkish-llm-data/datasets"
 
 dataset_names = [
     ("bilkent_creative_writings", 16.0),
-    ("book_corpus_v2", 8.0),
-    ("dergipark", 6.0),
+    ("book_corpus_v2", 6.0),
+    ("dergipark", 4.0),
     ("oscarmc4_cleaned_hf_dataset", 1.0),
     ("parlamint_tr", 12.0),
-    ("yoktez", 2.0),
+    ("yoktez", 1.0),
 ]
 
 dataset_versions = ["1.0.0" for _ in range(len(dataset_names))]
