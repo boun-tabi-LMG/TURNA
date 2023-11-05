@@ -3,7 +3,7 @@ unset LD_PRELOAD
 
 export GOOGLE_APPLICATION_CREDENTIALS=~/derlem-633f86db7de0.json
 
-PRETRAIN_GIN_FILEPATH=${1:-large_nl36_bs48_pretrain_all.gin}
+PRETRAIN_GIN_FILEPATH=${1:-large_nl36_bs48_pretrain_all_infer.gin}
 MODEL_NAME=${2:-"large_nl36_bs48_pretrain_all"}
 ITER_COUNT=${3:-10000}
 ADDITIONAL_GIN_PARAMS="${@:4}"
