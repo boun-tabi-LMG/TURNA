@@ -1,0 +1,24 @@
+# Register necessary SeqIO Tasks/Mixtures.
+from __gin__ import dynamic_registration
+from t5x import utils
+from t5x import infer
+import tasks
+import __main__ as infer_script
+
+include 'large_nl36.gin'
+include 't5x/configs/runs/infer.gin'
+
+DROPOUT_RATE = 0.0  # unused but needs to be specified
+MIXTURE_OR_TASK_NAME = "pretrain_all"
+TASK_FEATURE_LENGTHS = {"inputs": 512, "targets": 512}
+CHECKPOINT_PATH = "./checkpoint_10000"
+INFER_OUTPUT_DIR = "./infer_output"
+
+utils.DatasetConfig:
+  split = "validation"
+  batch_size = 48
+
+infer_script.infer:
+  checkpoint_period = 1
+  checkpoint_ds_iter = False
+
