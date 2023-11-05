@@ -2,7 +2,7 @@
 
 # gcloud beta services identity create --service tpu.googleapis.com --project derlem
 
-# gcloud compute tpus tpu-vm create tpu-vm-05 \
+# gcloud compute tpus tpu-vm create tpu-vm-06 \
 #   --zone=europe-west4-a \
 #   --accelerator-type=v4-8 \
 #   --version=tpu-vm-tf-2.13.0

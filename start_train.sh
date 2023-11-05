@@ -1,6 +1,8 @@
 # set train hyperparams
 unset LD_PRELOAD
 
+export GOOGLE_APPLICATION_CREDENTIALS=~/derlem-633f86db7de0.json
+
 PRETRAIN_GIN_FILEPATH=${1:-base_nl36_pretrain.gin}
 MODEL_NAME=${2:-"base_nl36"}
 ADDITIONAL_GIN_PARAMS="${@:3}"
