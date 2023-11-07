@@ -1,4 +1,5 @@
 import functools
+import logging
 
 import seqio
 import t5.data
@@ -7,6 +8,10 @@ from t5.data import preprocessors
 from t5.evaluation import metrics
 
 from task_utils.ul2_objective import ul2_objective
+from task_utils.tokens import get_dataset, count_tokens
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # values from UL2 paper https://arxiv.org/pdf/2205.05131.pdf chapter 3.1.2 table 1
 R_DENOISER_SPAN_LENGTHS = [3.0, 8.0]
