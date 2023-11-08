@@ -38,15 +38,6 @@
       "rstrip": false,
       "normalized": false,
       "special": true
-    },
-    {
-      "id": 32000,
-      "content": "<MASK>",
-      "single_word": false,
-      "lstrip": false,
-      "rstrip": false,
-      "normalized": false,
-      "special": true
     }
   ],
   "normalizer": {
@@ -78,7 +69,7 @@
   },
   "model": {
     "type": "Unigram",
-    "unk_id": 1,
+    "unk_id": 2,
     "vocab": [
       [
         "<PAD>",
