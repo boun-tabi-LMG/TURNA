@@ -94,7 +94,10 @@ for (dataset_name, dataset_weight), version in zip(dataset_names, dataset_versio
                 output_features={
                     "text": seqio.Feature(
                         vocabulary=vocabulary, add_eos=False, required=False
-                    )
+                    ),
+                    "corpus_pretokenized": seqio.Feature(
+                        vocabulary=vocabulary, add_eos=False
+                    ),
                 },
             )
         ],
