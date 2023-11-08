@@ -38,12 +38,12 @@ DEFAULT_OUTPUT_FEATURES = {
 dataset_gcs_url = "gs://turkish-llm-data/datasets"
 
 dataset_names = [
-    ("bilkent_creative_writings", 16.0),
-    ("book_corpus_v2", 6.0),
-    ("dergipark", 4.0),
-    ("oscarmc4_cleaned_hf_dataset", 1.0),
-    ("parlamint_tr", 12.0),
-    ("yoktez", 1.0),
+    ("bilkent_creative_writings", 2.0),
+    ("book_corpus_v2", 10.0),
+    ("dergipark", 10.0),
+    ("oscarmc4_cleaned_hf_dataset", 50.0),
+    ("parlamint_tr", 3.0),
+    ("yoktez", 25.0),
 ]
 
 dataset_versions = ["1.0.0" for _ in range(len(dataset_names))]
@@ -72,7 +72,7 @@ preprocessing_pipeline = [
     seqio.preprocessors.append_eos_after_trim,
 ]
 
-for (dataset_name, rate), version in zip(dataset_names, dataset_versions):
+for (dataset_name, dataset_weight), version in zip(dataset_names, dataset_versions):
     TaskRegistry.add(
         f"pretrain_{dataset_name}",
         source=seqio.TfdsDataSource(
@@ -104,7 +104,10 @@ for (dataset_name, rate), version in zip(dataset_names, dataset_versions):
     )
 
 MixtureRegistry.add(
-    "pretrain_all",
-    [(f"pretrain_{dataset_name}", rate) for dataset_name, rate in dataset_names],
+    "pretrain_all_v2",
+    [
+        (f"pretrain_{dataset_name}", dataset_weight)
+        for dataset_name, dataset_weight in dataset_names
+    ],
     default_rate=1.0,
 )
