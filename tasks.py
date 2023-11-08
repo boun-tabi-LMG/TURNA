@@ -99,7 +99,8 @@ for (dataset_name, dataset_weight), version in zip(dataset_names, dataset_versio
             )
         ],
         output_features={
-            "text": seqio.Feature(vocabulary=vocabulary, add_eos=False, required=False)
+            "text": seqio.Feature(vocabulary=vocabulary, add_eos=False, required=False),
+            "corpus_pretokenized": seqio.Feature(vocabulary=vocabulary, add_eos=False),
         },
     )
 
@@ -107,6 +108,15 @@ MixtureRegistry.add(
     "pretrain_all_v2",
     [
         (f"pretrain_{dataset_name}", dataset_weight)
+        for dataset_name, dataset_weight in dataset_names
+    ],
+    default_rate=1.0,
+)
+
+MixtureRegistry.add(
+    "count_all_v2",
+    [
+        (f"count_{dataset_name}", dataset_weight)
         for dataset_name, dataset_weight in dataset_names
     ],
     default_rate=1.0,
