@@ -6,6 +6,11 @@ from t5x import checkpoints
 
 from transformers import T5Config, T5EncoderModel, T5ForConditionalGeneration
 
+
+"""
+Taken from https://github.com/huggingface/transformers/blob/main/src/transformers/models/t5/convert_t5x_checkpoint_to_pytorch.py
+"""
+
 def t5x_attention_lookup(params, i, prefix, layer_name="attention"):
     """Returns the KOQV parameters of (self-)attention. Does not transpose."""
     k = params[f"{prefix}/layers_{i}/{layer_name}/key/kernel"]
