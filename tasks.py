@@ -95,15 +95,30 @@ for (dataset_name, dataset_weight), version in zip(dataset_names, dataset_versio
                     "text": seqio.Feature(
                         vocabulary=vocabulary, add_eos=False, required=False
                     ),
-                    "corpus_pretokenized": seqio.Feature(
-                        vocabulary=vocabulary, add_eos=False
-                    ),
                 },
             )
         ],
         output_features={
             "text": seqio.Feature(vocabulary=vocabulary, add_eos=False, required=False),
-            "corpus_pretokenized": seqio.Feature(vocabulary=vocabulary, add_eos=False),
+        },
+    )
+
+    TaskRegistry.add(
+        f"mixture_experiment_{dataset_name}",
+        source=seqio.TfdsDataSource(
+            tfds_name=":".join([dataset_name, version]), tfds_data_dir=dataset_gcs_url
+        ),
+        preprocessors=[
+            functools.partial(seqio.preprocessors.rekey, key_map={"corpus": "corpus"}),
+        ],
+        output_features={
+            "corpus": seqio.Feature(
+                vocabulary=vocabulary,
+                add_eos=False,
+                required=False,
+                dtype=tf.string,
+                rank=0,
+            ),
         },
     )
 
@@ -117,9 +132,9 @@ MixtureRegistry.add(
 )
 
 MixtureRegistry.add(
-    "count_all_v2",
+    "mixture_experiment_all",
     [
-        (f"count_{dataset_name}", dataset_weight)
+        (f"mixture_experiment_{dataset_name}", dataset_weight)
         for dataset_name, dataset_weight in dataset_names
     ],
     default_rate=1.0,
