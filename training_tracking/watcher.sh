@@ -1,8 +1,8 @@
 
 #!/bin/bash
 
-REPO_DIR=/Users/onur.gungor/Desktop/projects/research/projects/focus/turkish-llm
-TPU_NAME=tpu-vm-08
+REPO_DIR=$(dirname "$0")/..
+TPU_NAME=$(1:-tpu-vm-08)
 WAIT_TIME=1800
 ITERATION=0
 
