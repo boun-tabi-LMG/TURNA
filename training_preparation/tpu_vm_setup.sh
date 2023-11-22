@@ -1,4 +1,6 @@
 
+TMP_CODE_ARCHIVE_NAME=${1:-tmp-turkish-llm.tar.gz}
+
 pip install -U pip setuptools
 
 git clone https://github.com/google-research/t5x.git
@@ -17,4 +19,4 @@ cd ~/t5x && \
 python3 -m pip install -e '.[gpu,tpu]' -f https://storage.googleapis.com/jax-releases/libtpu_releases.html && \
 cd -
 
-bash ./tpu_vm_setup_extract_the_code_archive.sh
+bash ./tpu_vm_setup_extract_the_code_archive.sh ${TMP_CODE_ARCHIVE_NAME}

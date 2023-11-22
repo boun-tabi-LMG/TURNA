@@ -2,11 +2,12 @@
 REPO_DIR=${1}
 TPU_VM_NAME=${2}
 TRAINING_PREPARATION_DIR=${3}
+TMP_CODE_ARCHIVE_NAME=tmp-turkish-llm.tar.gz
 
 cd ${REPO_DIR} && \
-git archive main -o tmp-turkish-llm.tar.gz && \
+git archive main -o ${4} && \
 gcloud compute tpus tpu-vm scp \
-  tmp-turkish-llm.tar.gz \
+  ${4} \
   ${TRAINING_PREPARATION_DIR}/tpu_vm_setup_extract_the_code_archive.sh \
   ${REPO_DIR}/../derlem-633f86db7de0.json \
   ${TPU_VM_NAME}: && \
