@@ -103,24 +103,24 @@ for (dataset_name, dataset_weight), version in zip(dataset_names, dataset_versio
         },
     )
 
-    TaskRegistry.add(
-        f"mixture_experiment_{dataset_name}",
-        source=seqio.TfdsDataSource(
-            tfds_name=":".join([dataset_name, version]), tfds_data_dir=dataset_gcs_url
-        ),
-        preprocessors=[
-            functools.partial(seqio.preprocessors.rekey, key_map={"corpus": "corpus"}),
-        ],
-        output_features={
-            "corpus": seqio.Feature(
-                vocabulary=vocabulary,
-                add_eos=False,
-                required=False,
-                dtype=tf.string,
-                rank=0,
-            ),
-        },
-    )
+    # TaskRegistry.add(
+    #     f"mixture_experiment_{dataset_name}",
+    #     source=seqio.TfdsDataSource(
+    #         tfds_name=":".join([dataset_name, version]), tfds_data_dir=dataset_gcs_url
+    #     ),
+    #     preprocessors=[
+    #         functools.partial(seqio.preprocessors.rekey, key_map={"corpus": "corpus"}),
+    #     ],
+    #     output_features={
+    #         "corpus": seqio.Feature(
+    #             vocabulary=vocabulary,
+    #             add_eos=False,
+    #             required=False,
+    #             dtype=tf.string,
+    #             rank=0,
+    #         ),
+    #     },
+    # )
 
 MixtureRegistry.add(
     "pretrain_all_v2",
@@ -131,11 +131,11 @@ MixtureRegistry.add(
     default_rate=1.0,
 )
 
-MixtureRegistry.add(
-    "mixture_experiment_all",
-    [
-        (f"mixture_experiment_{dataset_name}", dataset_weight)
-        for dataset_name, dataset_weight in dataset_names
-    ],
-    default_rate=1.0,
-)
+# MixtureRegistry.add(
+#     "mixture_experiment_all",
+#     [
+#         (f"mixture_experiment_{dataset_name}", dataset_weight)
+#         for dataset_name, dataset_weight in dataset_names
+#     ],
+#     default_rate=1.0,
+# )
