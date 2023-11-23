@@ -26,5 +26,6 @@ cd ~/turkish-llm/ && nohup bash ./start_train.sh gins/large_nl36_bs48_pretrain_a
 ```bash
 export MODEL_ID=large_nl36-bs_48-il_512-20231108_1910
 export TRIAL_NO=02
-cd ~/turkish-llm/ && nohup bash ./start_infer.sh gins/large_nl36_bs48_pretrain_all.gin ${MODEL_ID} --gin.MIXTURE_OR_TASK_NAME=\"pretrain_all_v2\" >> infer-${MODEL_ID}-${TRIAL_NO}.log &
+export ITER_COUNT=500000
+cd ~/turkish-llm/ && nohup bash ./start_infer.sh gins/large_nl36_bs48_pretrain_all_infer.gin ${MODEL_ID} ${ITER_COUNT} --gin.MIXTURE_OR_TASK_NAME=\"pretrain_all_v2\" >> infer-${MODEL_ID}-${TRIAL_NO}.log &
 ```
