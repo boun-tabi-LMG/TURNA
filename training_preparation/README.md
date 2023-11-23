@@ -37,7 +37,20 @@ ssh -i ~/.ssh/id_rsa $HOST_NAME
 ```
 Replace the `id_rsa` with the path to your private SSH key specific to your HOST_NAME to authenticate the connection.
 
-### Step 3: Start Training
+Clone the repository:
+
+```bash
+git clone https://github.com/boun-llm/turkish-llm.git
+```
+
+Make sure that `derlem-633f86db7de0.json` is located in the parent directory of `turkish-llm`. If not, copy it there.
+
+Navigate to the `turkish-llm` directory:
+
+```bash
+cd turkish-llm
+```
+
 Use `tmux` or a similar session manager to ensure your session remains active after any potential disconnection.
 
 Switch to `tmux` using:
@@ -59,6 +72,9 @@ Make sure the script path `training_preparation/tpu_vm_setup_driver.sh` and `$TP
 - Your GCP account must have the required permissions for creating and managing TPUs and VMs.
 - Customize the `gcloud` command and scripts as per your specific project needs.
 - It is assumed you are familiar with GCP, `gcloud` CLI, and containerized machine learning workflows.
+
+### Step 3: Start Training
+After setting up the TPU, you can start training.
 
 First, establish an SSH connection to the machine:
 
