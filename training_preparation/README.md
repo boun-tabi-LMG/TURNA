@@ -49,7 +49,8 @@ tmux at
 To prepare the TPU for training and begin the process, run your setup script:
 
 ```bash
-bash training_preparation/tpu_vm_setup_driver.sh $TPU_NAME $TMP_CODE_ARCHIVE_NAME```
+bash training_preparation/tpu_vm_setup_driver.sh $TPU_NAME $TMP_CODE_ARCHIVE_NAME
+```
 
 Make sure the script path `training_preparation/tpu_vm_setup_driver.sh` and `$TPU_NAME` correctly reflect your actual configurations and the TPU you're setting up.
 
@@ -58,8 +59,6 @@ Make sure the script path `training_preparation/tpu_vm_setup_driver.sh` and `$TP
 - Your GCP account must have the required permissions for creating and managing TPUs and VMs.
 - Customize the `gcloud` command and scripts as per your specific project needs.
 - It is assumed you are familiar with GCP, `gcloud` CLI, and containerized machine learning workflows.
-
-### Step 3: Start Training
 
 First, establish an SSH connection to the machine:
 
