@@ -1,0 +1,5 @@
+name	vocab_size	d_model	d_kv	d_ff	num_layers	num_heads	batch_size	sequence_length	model_size	model_size_in_bytes
+Large	32000	1024	64	4096	24	16	1	512		
+3B	32000	1024	128	16384	24	32	1	512		
+11B	32000	1024	128	65536	24	128	1	512		
+Large	32000	1024	64	4096	24	16	64	512		
