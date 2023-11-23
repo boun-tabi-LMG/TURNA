@@ -7,7 +7,7 @@ TMP_CODE_ARCHIVE_NAME=${4:-tmp-turkish-llm.tar.gz}
 cd ${REPO_DIR} && \
 git archive main -o ${TMP_CODE_ARCHIVE_NAME} && \
 gcloud compute tpus tpu-vm scp \
-  ${4} \
+  ${TMP_CODE_ARCHIVE_NAME} \
   ${TRAINING_PREPARATION_DIR}/tpu_vm_setup_extract_the_code_archive.sh \
   ${REPO_DIR}/../derlem-633f86db7de0.json \
   ${TPU_VM_NAME}: && \
