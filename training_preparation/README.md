@@ -13,6 +13,7 @@ HOST_NAME="minerva"         # Replace with your actual host name
 ZONE="europe-west4-a"       # Replace with your desired GCP zone
 ACCELERATOR_TYPE="v3-8"     # Specify the TPU type
 TPU_VERSION="tpu-vm-tf-2.13.0"  # TPU software version
+TMP_CODE_ARCHIVE_NAME="tmp-turkish-llm.tar.gz"  # Name of the code archive. 
 ```
 
 ### Step 1: Create a Preemptible TPU
@@ -48,8 +49,9 @@ tmux at
 To prepare the TPU for training and begin the process, run your setup script:
 
 ```bash
-bash training_preparation/tpu_vm_setup_driver.sh $TPU_NAME
+bash training_preparation/tpu_vm_setup_driver.sh $TPU_NAME $TMP_CODE_ARCHIVE_NAME
 ```
+
 Make sure the script path `training_preparation/tpu_vm_setup_driver.sh` and `$TPU_NAME` correctly reflect your actual configurations and the TPU you're setting up.
 
 **Note**:
@@ -57,8 +59,6 @@ Make sure the script path `training_preparation/tpu_vm_setup_driver.sh` and `$TP
 - Your GCP account must have the required permissions for creating and managing TPUs and VMs.
 - Customize the `gcloud` command and scripts as per your specific project needs.
 - It is assumed you are familiar with GCP, `gcloud` CLI, and containerized machine learning workflows.
-
-### Step 3: Start Training
 
 First, establish an SSH connection to the machine:
 
@@ -71,7 +71,7 @@ Then, start training:
 ```bash
 export MODEL_ID=large_nl36-bs_48-il_512-20231108_1910
 export TRIAL_NO=02
-cd ~/turkish-llm/ && nohup bash ./start_train.sh large_nl36_bs48_pretrain_all.gin ${MODEL_ID} --gin.MIXTURE_OR_TASK_NAME=\"pretrain_all_v2\" >> train-${MODEL_ID}-${TRIAL_NO}.log &
+cd ~/turkish-llm/ && nohup bash ./start_train.sh gins/large_nl36_bs48_pretrain_all.gin ${MODEL_ID} --gin.MIXTURE_OR_TASK_NAME=\"pretrain_all_v2\" >> train-${MODEL_ID}-${TRIAL_NO}.log &
 ```
 
 Increase the `TRIAL_NO` variable for each new training session as needed.
@@ -89,8 +89,15 @@ If the TPU is preempted, it will indicate that in the output as PREEMPTED. You c
 If you see that a TPU has been preempted, you can create a new one and resume training. You can also use the same TPU name as before, as long as you delete the old TPU first (but don't do that generally).
 
 
+# Stop TPU instance
+
+```bash 
+gcloud compute tpus tpu-vm stop $TPU_NAME --zone=$ZONE
+```
 
 
 # Monitoring
 
 /media/disk/home/onur.gungor/projects/research/projects/focus/turkish-llm/turkish-llm
+
+

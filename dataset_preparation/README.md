@@ -6,6 +6,7 @@
 
 The version in HF format is in `gs://turkish-llm-data/oscarmc4_cleaned_hf_dataset/`.
 
+
 ### Create the TFDS version
 
 The name is not ideal. We should remove the `_hf_dataset` part later.
@@ -70,26 +71,27 @@ cd bilkent_creative_writings
 tfds build  --manual_dir ../../data/raw/bilkent-creative-writings/texts_clean/ --data_dir ../../data/tfds/bilkent_creative_writings
 ```
 
-### Counts tokens in a TFDS dataset
-Run `count_tokens.py` specifying dataset name, tokenizer name or path, and split name (e.g. train or validation)
+## Additional Instructions
+
+
+### Generate samples from a TFDS dataset
+
 ```bash
-python count_tokens.py --dataset_name bilkent_creative_writings --tokenizer_name /media/disk/datasets/bounllm/VBARTTokenizer/ --split validation
+python -m dataset_preparation.process_a_tfds_dataset_to_get_samples --task_name deneme --dataset_name oscarmc4_cleaned_hf_dataset_subset_combined_tfds:1.0.0 --dataset_gcs_url gs://turkish-llm-data/ --output_filepath /media/disk/datasets/bounllm/sonrasil_oscarmc4_cleaned_hf_dataset_subset_combined_tfds.tar.gz     
 ```
 
-## Samples
+### Create custom TFDS dataset
 
-python -m dataset_preparation.process_a_tfds_dataset_to_get_samples --task_name deneme --dataset_name oscarmc4_cleaned_hf_dataset_subset_combined_tfds:1.0.0 --dataset_gcs_url gs://turkish-llm-data/ --output_filepath /media/disk/datasets/bounllm/sonrasil_oscarmc4_cleaned_hf_dataset_subset_combined_tfds.tar.gz
-
-# Creating a new TFDS dataset
-
-cd /media/disk/datasets/bounllm/tfds
+```bash
+cd path/to/my/project/datasets/
 tfds new my_dataset  # Create `my_dataset/my_dataset.py` template files
-# [...] Manually modify `my_dataset/my_dataset_dataset_builder.py` to implement your dataset. (Check out example in the dergipark/ folder)
+# [...] Manually modify `my_dataset/my_dataset_dataset_builder.py` to implement your dataset.
 cd my_dataset/
 tfds build  # Download and prepare the dataset to `~/tensorflow_datasets/`
+```
 
-# Specify another data / input directory:
+### Specify another data / input directory
 tfds build --manual_dir /media/disk/datasets/bounllm/dergipark/dergipark-090920230005 --data_dir /media/disk/datasets/bounllm/tfds/datasets/dergipark
 
-# Loading a TFDS dataset
+### Loading a TFDS dataset
 tfds.load("dergipark", data_dir="/media/disk/datasets/bounllm/tfds/datasets/dergipark")
