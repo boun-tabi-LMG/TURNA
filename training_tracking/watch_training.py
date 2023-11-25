@@ -5,7 +5,7 @@ import subprocess
 import discord
 
 
-def check_tpu_preempted(tpu_name):
+def check_tpu_preempted(tpu_name=None):
     """Checks whether a TPU is preempted.
 
         The output of the command is something like this:
@@ -34,7 +34,15 @@ def check_tpu_preempted(tpu_name):
         columns = line.split()
         tpu_dict[columns[0]] = columns[-1]
 
-    return tpu_name in tpu_dict and tpu_dict[tpu_name] == "PREEMPTED", output
+    if tpu_name is None:
+        tpu_names_statues = sorted(tpu_dict.items(), key=lambda x: x[0])
+        return tpu_names_statues[-1][1] == "PREEMPTED", output, tpu_names_statues[-1][0]
+    else:
+        return (
+            tpu_name in tpu_dict and tpu_dict[tpu_name] == "PREEMPTED",
+            output,
+            tpu_name,
+        )
 
 
 def send_message(message):
@@ -61,13 +69,13 @@ def send_message(message):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--tpu_name", help="Name of the TPU", required=True)
+parser.add_argument("--tpu_name", help="Name of the TPU", required=False, default=None)
 parser.add_argument("--send_report", help="Name of the TPU", action="store_true")
 args = parser.parse_args()
 
 tpu_name = args.tpu_name
 
-is_preempted, output = check_tpu_preempted(tpu_name)
+is_preempted, output, tpu_name = check_tpu_preempted(tpu_name)
 
 if args.send_report:
     send_message(f"Report\n\n```bash\n{output}```")
