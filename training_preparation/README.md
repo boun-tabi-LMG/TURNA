@@ -76,6 +76,13 @@ cd ~/turkish-llm/ && nohup bash ./start_train.sh gins/large_nl36_bs48_pretrain_a
 
 Increase the `TRIAL_NO` variable for each new training session as needed.
 
+The default number of training steps is `3000000`, but you can optionally select 
+another target by adding an argument before `>>`:
+
+```bash
+cd ~/turkish-llm/ && nohup bash ./start_train.sh gins/large_nl36_bs48_pretrain_all.gin ${MODEL_ID} --gin.MIXTURE_OR_TASK_NAME=\"pretrain_all_v2\" --gin.TRAIN_STEPS=4000000 >> train-${MODEL_ID}-${TRIAL_NO}.log &
+```
+
 ### Step 4: Monitor Training
 
 Use the following command to monitor the TPU:

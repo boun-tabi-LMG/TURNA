@@ -19,6 +19,6 @@ utils.SaveCheckpointConfig:
 MIXTURE_OR_TASK_NAME = "pretrain_all"
 USE_CACHED_TASKS = False
 TASK_FEATURE_LENGTHS = {"inputs": 512, "targets": 512}
-TRAIN_STEPS = 1000000
+TRAIN_STEPS = 3000000
 DROPOUT_RATE = 0.0
 BATCH_SIZE = 48
