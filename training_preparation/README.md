@@ -4,17 +4,21 @@
 
 This README walks through the process of running a machine learning training session using a preemptible Cloud TPU (Tensor Processing Unit) on Google Cloud Platform (GCP). It explains how to create a preemptible TPU, set it up, and start training.
 
+
 ### Defining Variables
 For consistency and ease of use, let's define some variables that we'll use throughout the guide:
 
 ```bash
-TPU_NAME="tpu-vm-08"        # Replace with the name of your TPU
-HOST_NAME="minerva"         # Replace with your actual host name
-ZONE="europe-west4-a"       # Replace with your desired GCP zone
-ACCELERATOR_TYPE="v3-8"     # Specify the TPU type
-TPU_VERSION="tpu-vm-tf-2.13.0"  # TPU software version
-TMP_CODE_ARCHIVE_NAME="tmp-turkish-llm.tar.gz"  # Name of the code archive. 
+TPU_NAME="tpu-vm-08"                            # Replace with the name of your TPU
+HOST_NAME="minerva"                             # Replace with your actual host name
+ZONE="europe-west4-a"                           # Replace with your desired GCP zone
+ACCELERATOR_TYPE="v3-8"                         # Specify the TPU type
+TPU_VERSION="tpu-vm-tf-2.13.0"                  # TPU software version
+TMP_CODE_ARCHIVE_NAME="tmp-turkish-llm.tar.gz"  # Name of the code archive.
+PROJECT="derlem"                                # Replace with your project name
 ```
+
+Steps to configure `gcloud` after these variables are defined and before continuing below are [at the bottom](#Setting).
 
 ### Step 1: Create a Preemptible TPU
 A preemptible TPU is an affordable and ephemeral TPU instance that can be preempted at any time by the cloud provider. They are well-suited for workloads that can withstand interruptions like machine learning training.
@@ -95,16 +99,18 @@ If the TPU is preempted, it will indicate that in the output as PREEMPTED. You c
 
 If you see that a TPU has been preempted, you can create a new one and resume training. You can also use the same TPU name as before, as long as you delete the old TPU first (but don't do that generally).
 
-
-# Stop TPU instance
+### Stop TPU instance
 
 ```bash 
 gcloud compute tpus tpu-vm stop $TPU_NAME --zone=$ZONE
 ```
 
+### Monitoring
 
-# Monitoring
+`/media/disk/home/onur.gungor/projects/research/projects/focus/turkish-llm/turkish-llm`
 
-/media/disk/home/onur.gungor/projects/research/projects/focus/turkish-llm/turkish-llm
+### Setting up `gcloud`
 
-
+1. Log in: `gcloud auth login`
+2. Set zone: `gcloud config set compute/zone $ZONE`
+3. Set project: `gcloud config set project $PROJECT`
