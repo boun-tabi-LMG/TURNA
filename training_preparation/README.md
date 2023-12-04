@@ -18,7 +18,7 @@ TMP_CODE_ARCHIVE_NAME="tmp-turkish-llm.tar.gz"  # Name of the code archive.
 PROJECT="derlem"                                # Replace with your project name
 ```
 
-Steps to configure `gcloud` after these variables are defined and before continuing below are [at the bottom](#Setting).
+Steps to configure `gcloud` after these variables are defined and before continuing below are [at the bottom](#setting-up-gcloud).
 
 ### Step 1: Create a Preemptible TPU
 A preemptible TPU is an affordable and ephemeral TPU instance that can be preempted at any time by the cloud provider. They are well-suited for workloads that can withstand interruptions like machine learning training.
