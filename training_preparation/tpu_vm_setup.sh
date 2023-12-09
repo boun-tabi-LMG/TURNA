@@ -14,7 +14,6 @@ pattern_to_replace=git\+https://github\.com/google/flax#egg=flax
 replacement=file://localhost/${HOME}/flax-0.7.2#egg=flax
 
 cd ~/t5x && sed -i.bak 's!'${pattern_to_replace}'!'${replacement}'!g' setup.py && cd -
-
 cd ~/t5x && \
 python3 -m pip install -e '.[gpu,tpu]' -f https://storage.googleapis.com/jax-releases/libtpu_releases.html && \
 cd -
