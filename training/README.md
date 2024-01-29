@@ -1,8 +1,8 @@
 # README
 
-## Guide to Run Machine Learning Training on a Preemptible TPU
+## Guide to TURNA Training on a Preemptible TPU
 
-This README walks through the process of running a machine learning training session using a preemptible Cloud TPU (Tensor Processing Unit) on Google Cloud Platform (GCP). It explains how to create a preemptible TPU, set it up, and start training.
+This README walks through the process of training TURNA session using a preemptible Cloud TPU (Tensor Processing Unit) on Google Cloud Platform (GCP). It explains how to create a preemptible TPU, set it up, and start training.
 
 
 ### Defining Variables
@@ -14,7 +14,7 @@ HOST_NAME="minerva"                             # Replace with your actual host 
 ZONE="europe-west4-a"                           # Replace with your desired GCP zone
 ACCELERATOR_TYPE="v3-8"                         # Specify the TPU type
 TPU_VERSION="tpu-vm-tf-2.13.0"                  # TPU software version
-TMP_CODE_ARCHIVE_NAME="tmp-turkish-llm.tar.gz"  # Name of the code archive.
+TMP_CODE_ARCHIVE_NAME="tmp-turna.tar.gz"  # Name of the code archive.
 PROJECT="derlem"                                # Replace with your project name
 ```
 
@@ -44,15 +44,15 @@ Replace the `id_rsa` with the path to your private SSH key specific to your HOST
 Clone the repository:
 
 ```bash
-git clone https://github.com/boun-llm/turkish-llm.git
+git clone https://github.com/boun-tabi-LMG/turna.git
 ```
 
-Make sure that `derlem-633f86db7de0.json` is located in the parent directory of `turkish-llm`. If not, copy it there.
+Make sure that `derlem-633f86db7de0.json` is located in the parent directory of `turna`. If not, copy it there.
 
-Navigate to the `turkish-llm` directory:
+Navigate to the `turna` directory:
 
 ```bash
-cd turkish-llm
+cd turna
 ```
 
 Use `tmux` or a similar session manager to ensure your session remains active after any potential disconnection.
@@ -89,9 +89,9 @@ gcloud compute tpus tpu-vm ssh $TPU_NAME
 Then, start training:
 
 ```bash
-export MODEL_ID=large_nl36-bs_48-il_512-20231108_1910
-export TRIAL_NO=02
-cd ~/turkish-llm/ && nohup bash ./start_train.sh gins/large_nl36_bs48_pretrain_all.gin ${MODEL_ID} --gin.MIXTURE_OR_TASK_NAME=\"pretrain_all_v2\" >> train-${MODEL_ID}-${TRIAL_NO}.log &
+export MODEL_ID=TURNA
+export TRIAL_NO=01
+cd ~/turkish-llm/ && nohup bash ./start_train.sh large_nl36_bs48_pretrain_all.gin ${MODEL_ID} --gin.MIXTURE_OR_TASK_NAME=\"pretrain_all_v2\" >> train-${MODEL_ID}-${TRIAL_NO}.log &
 ```
 
 Increase the `TRIAL_NO` variable for each new training session as needed.
@@ -100,7 +100,7 @@ The default number of training steps is `3000000`, but you can optionally select
 another target by adding an argument before `>>`:
 
 ```bash
-cd ~/turkish-llm/ && nohup bash ./start_train.sh gins/large_nl36_bs48_pretrain_all.gin ${MODEL_ID} --gin.MIXTURE_OR_TASK_NAME=\"pretrain_all_v2\" --gin.TRAIN_STEPS=4000000 >> train-${MODEL_ID}-${TRIAL_NO}.log &
+cd ~/turna/ && nohup bash ./start_train.sh large_nl36_bs48_pretrain_all.gin ${MODEL_ID} --gin.MIXTURE_OR_TASK_NAME=\"pretrain_all_v2\" --gin.TRAIN_STEPS=4000000 >> train-${MODEL_ID}-${TRIAL_NO}.log &
 ```
 
 ### Step 4: Monitor Training
@@ -120,10 +120,6 @@ If you see that a TPU has been preempted, you can create a new one and resume tr
 ```bash 
 gcloud compute tpus tpu-vm stop $TPU_NAME --zone=$ZONE
 ```
-
-### Monitoring
-
-`/media/disk/home/onur.gungor/projects/research/projects/focus/turkish-llm/turkish-llm`
 
 ### Setting up `gcloud`
 

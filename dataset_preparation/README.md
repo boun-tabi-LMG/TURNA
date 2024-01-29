@@ -1,30 +1,10 @@
 # Dataset preparation
 
-## Oscar MC4 corpus
+## Oscar MC4 corpus & Book Corpus & DergiPark & YökTez 
 
-### Downloading the dataset
+These datasets are not publicly available.
 
-The version in HF format is in `gs://turkish-llm-data/oscarmc4_cleaned_hf_dataset/`.
-
-
-### Create the TFDS version
-
-The name is not ideal. We should remove the `_hf_dataset` part later.
-
-```bash
-cd ${TURKISH_LLM_REPO_DIR}/dataset_preparation/oscarmc4_cleaned_hf_dataset
-tfds build \
-    --manual_dir /media/disk/datasets/bounllm/oscarmc4_cleaned_hf_dataset \
-    --data_dir /media/disk/datasets/bounllm/tfds/datasets/
-```
-
-### Copy the TFDS version to GCS
-
-```bash
-gcloud storage cp -r \
-    /media/disk/datasets/bounllm/tfds/datasets/oscarmc4_cleaned_hf_dataset \
-    gs://turkish-llm-data/tfds/datasets/oscarmc4_cleaned_hf_dataset
-```
+To compile the DergiPark and YökTez datasets, visit https://github.com/boun-tabi-LMG/turkish-academic-text-harvest.
 
 ## ParlaMintTR
 
@@ -48,7 +28,7 @@ python preprocess/preprocess_parlamint.py --input_dir ../data/raw/ParlaMint-TR/P
 ### Create a TFDS dataset
 Navigate to the parlamint_tr directory and build the dataset using:
 ```bash
-cd parlamint_tr
+cd dataset_preparation/parlamint_tr
 tfds build --manual_dir ../../data/raw/ParlaMint-TR/ParlaMint-TR-clean --data_dir ../../data/tfds/parlamint_tr
 ```
 
@@ -67,31 +47,7 @@ python preprocess/preprocess_creative_writings.py --input_dir ../data/raw/bilken
 ### Create a TFDS dataset
 Navigate to the bilkent_creative_writings directory and build the dataset:
 ```bash
-cd bilkent_creative_writings
+cd dataset_preparation/bilkent_creative_writings
 tfds build  --manual_dir ../../data/raw/bilkent-creative-writings/texts_clean/ --data_dir ../../data/tfds/bilkent_creative_writings
 ```
 
-## Additional Instructions
-
-
-### Generate samples from a TFDS dataset
-
-```bash
-python -m dataset_preparation.process_a_tfds_dataset_to_get_samples --task_name deneme --dataset_name oscarmc4_cleaned_hf_dataset_subset_combined_tfds:1.0.0 --dataset_gcs_url gs://turkish-llm-data/ --output_filepath /media/disk/datasets/bounllm/sonrasil_oscarmc4_cleaned_hf_dataset_subset_combined_tfds.tar.gz     
-```
-
-### Create custom TFDS dataset
-
-```bash
-cd path/to/my/project/datasets/
-tfds new my_dataset  # Create `my_dataset/my_dataset.py` template files
-# [...] Manually modify `my_dataset/my_dataset_dataset_builder.py` to implement your dataset.
-cd my_dataset/
-tfds build  # Download and prepare the dataset to `~/tensorflow_datasets/`
-```
-
-### Specify another data / input directory
-tfds build --manual_dir /media/disk/datasets/bounllm/dergipark/dergipark-090920230005 --data_dir /media/disk/datasets/bounllm/tfds/datasets/dergipark
-
-### Loading a TFDS dataset
-tfds.load("dergipark", data_dir="/media/disk/datasets/bounllm/tfds/datasets/dergipark")
