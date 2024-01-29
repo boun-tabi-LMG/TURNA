@@ -8,8 +8,8 @@ MODEL_NAME=${2:-"large_nl36_bs48_pretrain_all"}
 ITER_COUNT=${3:-10000}
 ADDITIONAL_GIN_PARAMS="${@:4}"
 
-GCS_BUCKET="gs://turkish-llm-data"
-PROJECT_DIR_NAME="turkish-llm"
+GCS_BUCKET="gs://turna-data"
+PROJECT_DIR_NAME="turna"
 PROJECT_DIR="${HOME}/${PROJECT_DIR_NAME}"
 T5X_DIR=${HOME}"/t5x"  # directory where the t5x is cloned.
 MODEL_DIR="${GCS_BUCKET}/models/${MODEL_NAME}" # maybe we should change this. things get messy when we use the same directory for both model and project.

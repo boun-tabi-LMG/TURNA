@@ -2,7 +2,7 @@
 
 TMP_CODE_ARCHIVE_NAME=${1:-tmp-turkish-llm.tar.gz}
 
-mkdir -p ~/turkish-llm && \
-cd ~/turkish-llm && \
+mkdir -p ~/turna && \
+cd ~/turna && \
 tar zxvf ~/${TMP_CODE_ARCHIVE_NAME} && \
 cd -

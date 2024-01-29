@@ -2,7 +2,7 @@
 REPO_DIR=${1}
 TPU_VM_NAME=${2}
 TRAINING_PREPARATION_DIR=${3}
-TMP_CODE_ARCHIVE_NAME=${4:-tmp-turkish-llm.tar.gz}
+TMP_CODE_ARCHIVE_NAME=${4:-tmp-turna.tar.gz}
 
 cd ${REPO_DIR} && \
 git archive main -o ${TMP_CODE_ARCHIVE_NAME} && \
