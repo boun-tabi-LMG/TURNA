@@ -1,1 +1,0 @@
-/(BEGIN|END) Train loop/ {if ($5 == "BEGIN") begin_datetime = $2; else end_datetime = $2;} END { print begin_datetime, end_datetime}
