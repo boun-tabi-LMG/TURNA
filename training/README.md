@@ -1,5 +1,3 @@
-# README
-
 ## Guide to TURNA Training on a Preemptible TPU
 
 This README walks through the process of training TURNA session using a preemptible Cloud TPU (Tensor Processing Unit) on Google Cloud Platform (GCP). It explains how to create a preemptible TPU, set it up, and start training.
@@ -66,10 +64,10 @@ tmux at
 To prepare the TPU for training and begin the process, run your setup script:
 
 ```bash
-bash training_preparation/tpu_vm_setup_driver.sh $TPU_NAME $TMP_CODE_ARCHIVE_NAME
+bash training/tpu_vm_setup_driver.sh $TPU_NAME $TMP_CODE_ARCHIVE_NAME
 ```
 
-Make sure the script path `training_preparation/tpu_vm_setup_driver.sh` and `$TPU_NAME` correctly reflect your actual configurations and the TPU you're setting up.
+Make sure the script path `training/tpu_vm_setup_driver.sh` and `$TPU_NAME` correctly reflect your actual configurations and the TPU you're setting up.
 
 **Note**:
 - Ensure you use the correct TPU name and scripts according to your project.
