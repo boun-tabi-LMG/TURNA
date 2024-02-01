@@ -1,6 +1,6 @@
 # TURNA - Turkish Encoder-Decoder Language Model 
 
-The repository contains scripts and instructions for training TURNA, a Turkish Encoder-Decoder Language Model using `t5x` framework on Google Cloud Platform.
+The repository contains scripts and instructions for training TURNA, a Turkish Encoder-Decoder Language Model using the `t5x` framework on the Google Cloud Platform.
 
 The repository is organized as follows:
 - `dataset_preparation`: Scripts and instructions for preparing the datasets used in the project.
