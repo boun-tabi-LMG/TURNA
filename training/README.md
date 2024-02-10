@@ -89,7 +89,7 @@ Then, start training:
 ```bash
 export MODEL_ID=TURNA
 export TRIAL_NO=01
-cd ~/turkish-llm/ && nohup bash ./start_train.sh large_nl36_bs48_pretrain_all.gin ${MODEL_ID} --gin.MIXTURE_OR_TASK_NAME=\"pretrain_all_v2\" >> train-${MODEL_ID}-${TRIAL_NO}.log &
+cd ~/turna/ && nohup bash ./start_train.sh large_nl36_bs48_pretrain_all.gin ${MODEL_ID} --gin.MIXTURE_OR_TASK_NAME=\"pretrain_all_v2\" >> train-${MODEL_ID}-${TRIAL_NO}.log &
 ```
 
 Increase the `TRIAL_NO` variable for each new training session as needed.

@@ -1,0 +1,24 @@
+name: Sync public-release
+on:
+  push:
+    branches:
+      - public-release # Sync only when public-release branch is updated
+  workflow_dispatch: # Sync manually
+jobs:
+  push-to-public-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Push changes to target repository
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.PAT }} # organization-level PAT
+          repository: boun-tabi-LMG/TURNA # Target repository
+          branch: public-release # Push to public-release branch
+          force: true
+          tags: true
+          directory: "."
