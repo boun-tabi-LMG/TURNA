@@ -47,7 +47,7 @@ def register_the_task(task_name, dataset_name, dataset_gcs_url):
     """
 
     vocabulary = get_vocabulary(
-        "SentencePiece_32k_Tokenizer-denoiser-tokens-added-02.model"
+        "SentencePiece.model"
     )
 
     DEFAULT_OUTPUT_FEATURES = {
@@ -150,7 +150,7 @@ if __name__ == "__main__":
     dataset = get_dataset(args.task_name, only_a_single_shard=args.only_a_single_shard)
 
     vocabulary = get_vocabulary(
-        "SentencePiece_32k_Tokenizer-denoiser-tokens-added-02.model"
+        "SentencePiece.model"
     )
 
     write_samples_to_disk(

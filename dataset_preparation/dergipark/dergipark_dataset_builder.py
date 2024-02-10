@@ -65,4 +65,3 @@ class Builder(tfds.core.GeneratorBasedBuilder):
             "article": file,
         }
 
-# tfds build --manual_dir /media/disk/datasets/bounllm/dergipark/dergipark-090920230005 --data_dir /media/disk/datasets/bounllm/tfds/datasets/dergipark

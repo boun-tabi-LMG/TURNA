@@ -51,4 +51,3 @@ class Builder(tfds.core.GeneratorBasedBuilder):
                 "article": file,
             }
 
-# tfds build  --manual_dir /media/disk/datasets/bounllm/bilkent-creative-writings/texts_clean/ --data_dir /media/disk/datasets/bounllm/tfds/datasets/bilkent_creative_writings

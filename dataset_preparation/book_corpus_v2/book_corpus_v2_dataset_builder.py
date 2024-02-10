@@ -55,4 +55,3 @@ class Builder(tfds.core.GeneratorBasedBuilder):
                 "article": file,
             }
 
-# tfds build  --manual_dir /media/disk/datasets/bounllm/book_corpus_v2/texts_clean --data_dir /media/disk/datasets/bounllm/tfds/datasets/book_corpus_v2

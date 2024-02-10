@@ -41,6 +41,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-# python preprocess_dergipark_yoktez.py --input_dir /media/disk/datasets/bounllm/dergipark/dergipark-090920230005 --train_ratio 0.9999
-# python preprocess_dergipark_yoktez.py --input_dir /media/disk/datasets/bounllm/yok-tez/yok-tez-090920230901 --train_ratio 0.99999

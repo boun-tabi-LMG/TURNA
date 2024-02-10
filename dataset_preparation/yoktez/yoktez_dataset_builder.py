@@ -66,4 +66,3 @@ class Builder(tfds.core.GeneratorBasedBuilder):
             "article": file,
         }
 
-# tfds build --manual_dir /media/disk/datasets/bounllm/yok-tez/yok-tez-090920230901 --data_dir /media/disk/datasets/bounllm/tfds/datasets/yoktez

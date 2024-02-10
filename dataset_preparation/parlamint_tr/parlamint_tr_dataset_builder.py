@@ -55,4 +55,3 @@ class Builder(tfds.core.GeneratorBasedBuilder):
 
 
 
-# tfds build --manual_dir /media/disk/datasets/bounllm/parlamint/ParlaMint-TR --data_dir /media/disk/datasets/bounllm/tfds/datasets/parlamint_tr
