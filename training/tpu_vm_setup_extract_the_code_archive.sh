@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TMP_CODE_ARCHIVE_NAME=${1:-tmp-turkish-llm.tar.gz}
+TMP_CODE_ARCHIVE_NAME=${1:-tmp-turna.tar.gz}
 
 mkdir -p ~/turna && \
 cd ~/turna && \
